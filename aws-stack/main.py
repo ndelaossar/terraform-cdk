@@ -14,9 +14,7 @@ class MyAwsStack(TerraformStack):
                 region="us-east-1",  # Or any region, LocalStack doesn't strictly enforce
                 access_key="test",
                 secret_key="test",
-                skip_credentials_validation=True,
-                skip_metadata_api_check=True,
-                skip_requesting_account_id=True,
+                s3_use_path_style=True,
                 endpoints=[
                     {
                         "s3": "http://localhost:4566",
