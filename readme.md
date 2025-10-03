@@ -11,10 +11,15 @@
   #### AWS
   - cdktf init --template="python" --providers="aws@~>4.0"
   #### Docker
-  - cdktf init --template=python --providers=kreuzwerker/docker --local
+  cdktf init --template=python \
+             --project-name=terraform-cdk-docker \
+             --project-description="How to Deploy a Kubernetes Service" \
+             --providers="Docker" \
+             --local
   #### Kubernetes
   cdktf init --template=python \
-             --project-name=terraform-cdk \
-             --project-description="Learn how to develop CDKTF applications" \
-             --providers="kubernetes@~>2.14" \
+             --project-name=terraform-cdk-kubenetes \
+             --project-description="How to Deploy a Kubernetes Service" \
+             --providers="Kubernetes" \
              --local
+  #### cdktf get - download modules

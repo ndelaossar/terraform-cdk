@@ -1,0 +1,43 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: production
+---
+apiVersion: apps/v1
+kind: Deployment
+deployment:
+  metadata:
+    name: web-app
+    namespace: production
+  spec:
+    replicas: 3
+    selector:
+      matchLabels:
+        app: web-app
+    template:
+      metadata:
+        labels:
+          app: web-app
+      spec:
+        containers:
+          - name: web-container
+            image: nginx:latest
+            ports:
+              - containerPort: 80
+---
+# https://kubernetes.io/docs/concepts/services-networking/service/
+apiVersion: v1
+kind: Service
+metadata:
+  name: web-service
+  namespace: production
+spec:
+  selector:
+    app: web-app
+  type: NodePort
+  ports:
+    - port: 80
+      targetPort: 8080
+      protocol: TCP
+      nodePort: 30080
+
